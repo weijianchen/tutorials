@@ -5,6 +5,8 @@ class PropertyTag(models.Model):
     _description = "Property Tags"
 
     name = fields.Char(required=True)
+    color = fields.Integer()
+
     _order = "name"
 
     _check_name = models.Constraint(

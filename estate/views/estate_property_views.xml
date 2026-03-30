@@ -25,14 +25,15 @@
       <field name="arch" type="xml">
         <form string="Estate Property">
           <header>
-            <button name="action_sell" type="object" string="Sold"/>
-            <button name="action_cancell" type="object" string="Cancell"/>
+            <button name="action_sell" type="object" string="Sold" invisible="state == 'cancelled' or state =='sold'"/>
+            <button name="action_cancell" type="object" string="Cancell" invisible="state == 'cancelled' or state == 'sold'"/>
           </header>
           <sheet>
             <group>
               <group>
-                <field name="tags_id" widget="many2many_tags" />
-                <field name="property_type_id" string="Property Type" />
+                <field name="name"/>
+                <field name="tags_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="property_type_id" string="Property Type" options="{'no_create': True, 'no_open': True}"/>
                 <field name="postcode" string="Postcode" />
                 <field name="date_availability" string="Available From" />
                 <field name="state" widget="statusbar" />
@@ -52,14 +53,14 @@
                   <field name="facades" string="Facades" />
                   <field name="garage" string="Garage" />
                   <field name="garden" string="Garden" />
-                  <field name="garden_area" />
-                  <field name="garden_orientation" string="Garden Orientation" />
+                  <field name="garden_area"  invisible="not garden"/>
+                  <field name="garden_orientation" string="Garden Orientation" invisible="not garden" />
                   <field name="total_area" />
                 </group>
               </page>
               
               <page string="Offers">
-                <field name="offers_id"/>
+                <field name="offers_id" readonly="state == 'offer_accepted' or state == 'sold' or state == 'cancelled'"/>
               </page>
               <page string="Other info">
                 <group>
