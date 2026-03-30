@@ -6,7 +6,7 @@
       <field name="name">estate_property_offer.list</field>
       <field name="model">estate_property_offer</field>
       <field name="arch" type="xml">
-        <list string="Hello">
+        <list string="Hello" editable="bottom" decoration-success="status == 'accepted'" decoration-danger="status == 'refused'">
           <field name="price" string="Price" />
           <field name="partner_id" string="Partner" />
           <button name="action_accept" type="object" string="" icon="fa-check" invisible="status in ['accepted', 'refused']"/>
