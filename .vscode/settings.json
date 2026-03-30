@@ -1,0 +1,12 @@
+  
+  {
+    "python.defaultInterpreterPath": "/Users/cwk/src/odoo/odoo/odoovenv/bin/python",
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.extraPaths": [
+      "/Users/cwk/src/odoo/odoo",
+      "/Users/cwk/src/odoo/odoo/addons",
+      "/Users/cwk/src/odoo/tutorials"
+    ],
+    "python.analysis.typeCheckingMode": "basic"
+  }
+  
