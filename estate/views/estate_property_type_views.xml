@@ -22,7 +22,7 @@
             <notebook>
               <page string="Properties">
                 <field name="property_ids">
-                  <list>
+                  <list default_odrer="expected_price desc">
                     <field name="name" string="Title" />
                     <field name="expected_price" string="Expected Price" />
                     <field name="state" string="Status" />
