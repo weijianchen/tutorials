@@ -28,7 +28,7 @@ class Property(models.Model):
     offers_id = fields.One2many("estate_property_offer", "property_id") # not partner_id
     total_area = fields.Float(compute="_compute_total_area")
     best_price = fields.Float(compute="_compute_max_price")
-    _order = "id dec"
+    _order = "id desc"
 
     @api.depends('living_area','garden_area')
     def _compute_total_area(self):
