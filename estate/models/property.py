@@ -72,6 +72,14 @@ class Property(models.Model):
             if record.selling_price:
                 if record.selling_price < record.expected_price * 0.9:
                     raise ValidationError("价格太低")
+                
+
+    @api.ondelete(at_uninstall=False)
+    def _unlink_if_not_new_or_cancelled(self):
+        for record in self:
+            if record.state not in ["new", "cancelled"]:
+                raise UserError("只能删除new或者cancelled的房产")
+
 
 
 

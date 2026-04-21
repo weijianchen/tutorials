@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# pyright: reportUnusedExpression=false
+
 {
     'name': "Awesome Owl",
 

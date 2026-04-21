@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 from datetime import timedelta
 from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError
 
 class PropertyOffer(models.Model):
     _name = "estate_property_offer"
@@ -50,6 +51,26 @@ class PropertyOffer(models.Model):
         'CHECK(price > 0)',
         '价格需为正数'
     )
+
+    @api.model
+    def create(self, vals_list):
+        for vals in vals_list:
+            property_rec = self.env['estate_property'].browse(vals['property_id'])
+            max_price = max(property_rec.mapped('offers_id.price'),default=0.0)
+            if vals.get('price', 0) < max_price:
+                raise ValidationError('新报价需要高于当前已有报价')
+
+        
+        
+        records = super().create(vals_list)
+
+        for record in records:
+            record.property_id.state = 'offer_received'
+        
+
+        return records
+    
+    
 
 
 
