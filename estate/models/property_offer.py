@@ -15,6 +15,7 @@ class PropertyOffer(models.Model):
     validity = fields.Integer(default=7)
     date_deadline = fields.Date(compute="_compute_deadline", inverse="_inverse_deadline")
     _order = "price desc"
+    property_type_id = fields.Many2one("estate_property_type", related="property_id.property_type_id", store=True)
 
     @api.depends('create_date', 'validity') #自动字段create_date可以直接使用不用再重新声明
     def _compute_deadline(self): #called at each change of its dependencies

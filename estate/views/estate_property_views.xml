@@ -26,7 +26,7 @@
       <field name="arch" type="xml">
         <kanban>
           <templates>
-            <t t-name="kanban-card">
+            <t t-name="card">
               <div>
                 <field name="name" />
               </div>

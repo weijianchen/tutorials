@@ -34,5 +34,13 @@
       </field>
     </record>
 
+    <record id="estate_property_offer_action" model="ir.actions.act_window">
+      <field name='name'>TestOffers</field>
+      <field name='res_model'>estate_property_offer</field>
+      <field name='view_mode'>list,form</field>
+      <!-- 关键：只显示当前property type的offers，但这个active_id的用法需要了解-->
+      <field name='domain'>[('property_type_id', '=', active_id)]</field>
+    </record>
+
   </data>
 </odoo>
