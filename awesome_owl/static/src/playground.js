@@ -11,9 +11,14 @@ export class Playground extends Component {
         this.state = useState({value:0});
         this.html = "<b>not safe</b>";
         this.safeHtml = markup("<b>safe content</b>");
+        this.state1 = useState({sum:0}) //为什么这里不能写state，否则显示为空白且点击按钮后NaN
     }
 
     increment(){
         this.state.value++;
+    }
+
+    increSum(){
+        this.state1.sum++;
     }
 }

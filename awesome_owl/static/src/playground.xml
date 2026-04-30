@@ -5,7 +5,11 @@
         <div class="p-3">
             hello world
             <p>counter: <t t-esc="state.value"/></p>
-            <button t-on-click="increment">increment it</button><Counter/><Card title="'wo'" content1="'so handsome'" content2="html"/><Card title="'ni'" content1="'handsome again'" content2="safeHtml"/> 
+            <button t-on-click="increment">increment it</button><Counter onChange.bind="increSum"/><Card title="'wo'" content1="'so handsome'" content2="html"/><Card title="'ni'" content1="'handsome again'" content2="safeHtml"/> 
+        </div>
+        <div class="mt-3">
+            sum: <t t-esc="state1.sum"/>
+            <Counter onChange.bind="increSum"/>
         </div>
     </t>
 
