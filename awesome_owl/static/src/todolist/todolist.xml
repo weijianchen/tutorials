@@ -2,6 +2,7 @@
 <template xml:space="preserve">
     <t t-name="awesome_owl.todolist">
         <div>
+            <input class="form-control mb-3" placeholder="Enter a task" t-on-keyup="addTodo"/>
             <TodoItem 
             t-foreach="todos"
             t-as="todo"
