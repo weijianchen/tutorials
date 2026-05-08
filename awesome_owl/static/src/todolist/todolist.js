@@ -1,4 +1,4 @@
-import { Component, useState } from "@odoo/owl";
+import { Component, useRef, useState, onMounted } from "@odoo/owl";
 import { TodoItem } from "./todoitem";
 
 export class TodoList extends Component {
@@ -9,6 +9,10 @@ export class TodoList extends Component {
         this.todos = useState([
         ]);
         this.nextId = 1;
+        this.inputRef = useRef("todoInput"); //绑定对应的html元素
+        onMounted(() => {
+            this.inputRef.el.focus();//使用浏览器方法实现光标移入/获得焦点
+        })
     }
 
     addTodo(ev){
@@ -25,6 +29,19 @@ export class TodoList extends Component {
             isCompleted: false
         });
         ev.target.value = "";
+    }
+
+    toggleState(id){
+        const todo = this.todos.find((todo) => todo.id === id);
+        todo.isCompleted = !todo.isCompleted;
+    }
+
+    removeTodo(id){
+        const index = this.todos.findIndex((elem) => elem.id == id);
+        if (index >= 0) {
+            this.todos.splice(index, 1);
+        }
+
     }
 
 }
