@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template xml:space="preserve">
     <t t-name="awesome_owl.card">
-        <div class="card">
-            <h5><t t-esc="props.title"/></h5>
-            <p><t t-esc="props.content1"/></p>
-            <p><t t-out="props.content2"/></p>
+        <div class="card d-inline-block m-2">
+            <div class="card-body">
+                <h5 class="card-title"><t t-esc="props.title"/></h5>
+                <button class="btn btn-sm btn-primary" t-on-click="toggleContent">
+                    <t t-esc="state.isOpen? 'Hide':'Show'"/>
+                </button>
+                <div t-if="state.isOpen" class="card-text mt-2">
+                    <p><t t-esc="props.content1"/></p>
+                    <p><t t-out="props.content2"/></p>
+                    <p><t t-slot="default"/></p>
+                </div>
+            </div>
         </div>
     </t>
 </template>

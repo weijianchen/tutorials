@@ -12,6 +12,7 @@
             <Counter onChange.bind="increSum"/>
         </div>
         <div class="p-3"><TodoList/></div>
+        <div><Card title="'counter'" content1="'so handsome again'" content2="'haha'"><Counter/></Card></div>
     </t>
 
 </templates>
