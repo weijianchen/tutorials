@@ -7,8 +7,27 @@
                 <button class="btn-primary" t-on-click="openCustomers">Customers</button>
                 <button class="btn-primary" t-on-click="openLeads">Leads</button>
             </t>
-            <div>
-                hi dashboard
+            <div class="d-flex">
+                <DashboardItem>
+                    <h3>new orders this month</h3>
+                    <t t-esc="statics.nb_new_orders"/>
+                </DashboardItem>
+                <DashboardItem size="2">
+                    <h3>total amount of new orders this month</h3>
+                    <t t-esc="statics.total_amount"/>
+                </DashboardItem>
+                <DashboardItem>
+                    <h3>cancelled orders this month</h3>
+                    <t t-esc="statics.nb_cancelled_orders"/>
+                </DashboardItem>
+                <DashboardItem>
+                    <h3>average t-shirt per order</h3>
+                    <t t-esc="statics.average_quantity"/>
+                </DashboardItem>
+                <DashboardItem>
+                    <h3>average time per order</h3>
+                    <t t-esc="statics.average_time"/>
+                </DashboardItem>
             </div>
         </Layout>
     </t>
