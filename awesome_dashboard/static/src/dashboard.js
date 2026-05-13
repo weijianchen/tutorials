@@ -18,9 +18,13 @@ class AwesomeDashboard extends Component {
             nb_new_orders: 0,
             total_amount: 0
         })
+
+        this.statisticsService = useService("awesome_dashboard.statistics");
+
         onWillStart(async() => {
-            const result = await rpc("/awesome_dashboard/statistics");
-            Object.assign(this.statics, result);
+            //const result = await rpc("/awesome_dashboard/statistics");
+            const result = await this.statisticsService.loadStatistics();
+            Object.assign(this.statics, result);//避免用this.statics=result以免丢掉响应式
         })
 
     }
