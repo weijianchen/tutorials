@@ -28,6 +28,10 @@
                     <h3>average time per order</h3>
                     <t t-esc="statics.average_time"/>
                 </DashboardItem>
+                <DashboardItem>
+                    <h3>t-shirts by size</h3>
+                    <PieChart data="statics.orders_by_size"/>
+                </DashboardItem>
             </div>
         </Layout>
     </t>

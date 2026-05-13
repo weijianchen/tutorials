@@ -4,10 +4,11 @@ import { Layout } from "@web/search/layout";
 import { useService } from "@web/core/utils/hooks";
 import { DashboardItem } from "./dashboard_item/dashboard_item";
 import { rpc } from "@web/core/network/rpc";
+import { PieChart } from "./pie_chart/pie_chart"
 
 class AwesomeDashboard extends Component {
     static template = "awesome_dashboard.AwesomeDashboard";
-    static components = { Layout, DashboardItem };
+    static components = { Layout, DashboardItem, PieChart };
 
     setup(){
         this.action = useService("action");
@@ -16,7 +17,8 @@ class AwesomeDashboard extends Component {
             average_time: 0,
             nb_cancelled_orders: 0,
             nb_new_orders: 0,
-            total_amount: 0
+            total_amount: 0,
+            orders_by_size: null,
         })
 
         this.statisticsService = useService("awesome_dashboard.statistics");
@@ -24,7 +26,9 @@ class AwesomeDashboard extends Component {
         onWillStart(async() => {
             //const result = await rpc("/awesome_dashboard/statistics");
             const result = await this.statisticsService.loadStatistics();
-            Object.assign(this.statics, result);//避免用this.statics=result以免丢掉响应式
+            console.log("statics result:", result);
+            Object.assign(this.statics, result);//避免用this.statics=result以免丢掉响应式，key值要相同才能复制过去否则会丢失，orders_by_size和order_by_size
+            console.log("after assign:", this.statics)
         })
 
     }
@@ -48,4 +52,5 @@ class AwesomeDashboard extends Component {
     }
 }
 
-registry.category("actions").add("awesome_dashboard.dashboard", AwesomeDashboard);
+registry.category("actions").add("awesome_dashboard.dashboard", AwesomeDashboard);//菜单入口
+
