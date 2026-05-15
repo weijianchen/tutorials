@@ -12,6 +12,7 @@ class AwesomeDashboard extends Component {
 
     setup(){
         this.action = useService("action");
+        /*
         this.statics = useState({
             average_quantity: 0,
             average_time: 0,
@@ -20,9 +21,13 @@ class AwesomeDashboard extends Component {
             total_amount: 0,
             orders_by_size: null,
         })
+        */
 
         this.statisticsService = useService("awesome_dashboard.statistics");
+        this.statics = useState(this.statisticsService.statistics);
 
+
+        /*
         onWillStart(async() => {
             //const result = await rpc("/awesome_dashboard/statistics");
             const result = await this.statisticsService.loadStatistics();
@@ -30,6 +35,7 @@ class AwesomeDashboard extends Component {
             Object.assign(this.statics, result);//避免用this.statics=result以免丢掉响应式，key值要相同才能复制过去否则会丢失，orders_by_size和order_by_size
             console.log("after assign:", this.statics)
         })
+        */
 
     }
 
