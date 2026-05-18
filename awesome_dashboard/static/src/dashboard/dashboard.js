@@ -58,5 +58,5 @@ class AwesomeDashboard extends Component {
     }
 }
 
-registry.category("actions").add("awesome_dashboard.dashboard", AwesomeDashboard);//菜单入口
+registry.category("lazy_components").add("AwesomeDashboard", AwesomeDashboard);//菜单入口
 
