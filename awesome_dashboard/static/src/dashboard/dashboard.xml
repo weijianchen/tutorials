@@ -8,6 +8,7 @@
                 <button class="btn-primary" t-on-click="openLeads">Leads</button>
             </t>
             <div class="d-flex">
+                <!--
                 <DashboardItem>
                     <h3>new orders this month</h3>
                     <t t-esc="statics.nb_new_orders"/>
@@ -32,6 +33,13 @@
                     <h3>t-shirts by size</h3>
                     <PieChart data="statics.orders_by_size"/>
                 </DashboardItem>
+            -->
+                <t t-foreach="items" t-as="item" t-key="item.id">
+                    <DashboardItem size="item.size || 1">
+                        <t t-set="itemProp" t-value="item.props ? item.props(statics) : {'data': statistics}"/>
+                        <t t-component="item.Component" t-props="itemProp"/>
+                    </DashboardItem>
+                </t>
             </div>
         </Layout>
     </t>
