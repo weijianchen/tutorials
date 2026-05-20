@@ -27,9 +27,10 @@ export class PieChart extends Component {
     }
 
     get chartData(){
+        const data = this.props.data || { };
         return {
-            labels: Object.keys(this.props.data),
-            values: Object.values(this.props.data),
+            labels: Object.keys(data),
+            values: Object.values(data),
         }
     }
 
