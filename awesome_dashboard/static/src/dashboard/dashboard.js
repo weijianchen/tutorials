@@ -25,7 +25,7 @@ class AwesomeDashboard extends Component {
         })
         */
 
-        this.statisticsService = useService("awesome_dashboard.statistics");
+        this.statisticsService = useService("awesome_dashboard.statistics");//与statistics_service.js 中的 registry.category("services").add("awesome_dashboard.statistics", statisticsService);同名
         this.statics = useState(this.statisticsService.statistics);
 
 
@@ -39,7 +39,7 @@ class AwesomeDashboard extends Component {
         })
         */
        //this.items = items;
-       this.items = registry.category("awesome_dashboard").getAll();
+       this.items = registry.category("awesome_dashboard").getAll();//与dashboard_items.js 中的 const dashboardRegistry = registry.category("awesome_dashboard");同名
 
     }
 
@@ -62,5 +62,5 @@ class AwesomeDashboard extends Component {
     }
 }
 
-registry.category("lazy_components").add("AwesomeDashboard", AwesomeDashboard);//菜单入口
+registry.category("lazy_components").add("AwesomeDashboard", AwesomeDashboard);
 

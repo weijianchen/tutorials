@@ -116,6 +116,6 @@ dashboardRegistry.add("orders_by_size", {
     size: 2,
     props: (data) => ({
         title: "number of orders by size",
-        value: data.orders_by_size,
+        data: data.orders_by_size,
     })
 });

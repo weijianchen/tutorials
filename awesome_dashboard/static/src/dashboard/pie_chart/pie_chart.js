@@ -27,7 +27,7 @@ export class PieChart extends Component {
     }
 
     get chartData(){
-        const data = this.props.data || { };
+        const data = this.props.data;//dashboard_items.js中的参数名误写为value所以此处this.props.data才undefined不存在，问题解决
         return {
             labels: Object.keys(data),
             values: Object.values(data),
