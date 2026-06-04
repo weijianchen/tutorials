@@ -6,6 +6,7 @@
             <t t-set-slot="control-panel-create-button">
                 <button class="btn-primary" t-on-click="openCustomers">Customers</button>
                 <button class="btn-primary" t-on-click="openLeads">Leads</button>
+                <button class="btn" t-on-click="openSettings"><i class="fa fa-cog"/></button>
             </t>
             <div class="d-flex">
                 <!--
@@ -33,7 +34,7 @@
                     <h3>t-shirts by size</h3>
                     <PieChart data="statics.orders_by_size"/>
                 </DashboardItem>
-            -->
+                -->
                 <t t-foreach="items" t-as="item" t-key="item.id">
                     <DashboardItem size="item.size || 1">
                         <t t-set="itemProp" t-value="item.props ? item.props(statics) : {'data': statistics}"/>

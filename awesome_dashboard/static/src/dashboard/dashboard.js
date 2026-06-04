@@ -7,8 +7,11 @@ import { rpc } from "@web/core/network/rpc";
 import { PieChart } from "./pie_chart/pie_chart";
 //import { items } from "./dashboard_items";
 import "./dashboard_items";
+import { DashboardSettingDialog } from "./dashboard_dialog/dashboard_dialog";
 
-class AwesomeDashboard extends Component {
+const LOCAL_STORAGE_KEY = "awesome_dashboard.removed_items";//为什么不能放在setup里？
+
+class AwesomeDashboard extends Component { //注意这里没有export为什么可以，因为没有被import而且也在最后注册进了registry?
     static template = "awesome_dashboard.AwesomeDashboard";
     static components = { Layout, DashboardItem, PieChart };
 
@@ -39,8 +42,33 @@ class AwesomeDashboard extends Component {
         })
         */
        //this.items = items;
-       this.items = registry.category("awesome_dashboard").getAll();//与dashboard_items.js 中的 const dashboardRegistry = registry.category("awesome_dashboard");同名
+       //this.items = registry.category("awesome_dashboard").getAll();//与dashboard_items.js 中的 const dashboardRegistry = registry.category("awesome_dashboard");同名
 
+
+       this.dialog = useService("dialog");
+       this.state = useState({removedItemIds: JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || "[]"),})//注意逻辑或的用法，如果前面是空/假值，就用后面的
+
+    }
+
+    //getter,使模板每次访问items时能重新计算，有别于上面的this.item只是静态
+    get items(){
+        const removed = new Set(this.state.removedItemIds);//注意set的用法，里面的值不会重复
+        return registry.category("awesome_dashboard").getAll().filter((item) => !removed.has(item.id));//filter为数据的方法，入参为一个回调函数
+    }
+
+    openSettings(){
+        console.log("open settings clicked");
+        console.log("dialog_service:", this.dialog);
+        console.log("dialog_component:", DashboardSettingDialog);
+        this.dialog.add(DashboardSettingDialog, {
+            items: registry.category("awesome_dashboard").getAll(),
+            removedItemIds: this.state.removedItemIds,
+            onApply: (removedItemIds) => {
+                this.state.removedItemIds = removedItemIds;//触发重新渲染
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(removedItemIds));
+            }
+        });
+        console.log("dialog.add called")
     }
 
     openCustomers(){
